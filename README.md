@@ -1,6 +1,6 @@
 # SteelBrawl Website
 
-<img src="src/image/icon.png" width="32" height="32" alt="SteelBrawl Logo">
+<img src="src/image/icon.png" width="50" height="50" alt="SteelBrawl Logo">
 
 Официальный сайт приватного сервера Steel Brawl. Запуск был сделан на nodejs винтом.
 
