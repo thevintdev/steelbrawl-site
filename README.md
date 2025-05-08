@@ -3,6 +3,7 @@
 <div align="center">
   <img src="src/image/icon.png" width="80" height="80" alt="SteelBrawl Logo">
 </div>
+
 Официальный сайт приватного сервера Steel Brawl. Запуск был сделан на nodejs винтом.
 
 ## Установка и запуск
