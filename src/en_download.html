@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Steel Brawl</title>
+    <link rel="icon" type="image/x-icon" href="assets/faviconn.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+    <script src="https://kit.fontawesome.com/43e816a2c1.js" crossorigin="anonymous"></script>
+    <style>
+        #snowfall-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="snowfall-canvas"></canvas>
+    <nav class="navbar level" role="navigation" aria-label="main navigation">
+        <div class="navbar-left">
+            <a class="navbar-item" href="/download_en">
+                <img src="../image/icon.png" class="is-32x32" alt="Steel Brawl">
+                <strong class="ml-3">SteelBrawl</strong>
+            </a>
+        </div>
+        <div class="navbar-right">
+            <a class="navbar-item" href="https://t.me/steelbrawl" target="_blank">
+                <i class="fa-brands fa-telegram fa-2x" aria-hidden="true"></i>
+                <strong class="ml-2">Telegram</strong>
+            </a>
+        </div>
+    </nav>
+    <section class="section">
+        <div class="container has-text-centered">
+            <h1 class="title is-1">Steel Brawl</h1>
+            <p class="subtitle is-3">Private server on version 36 <strong class="has-text-danger">Brawl Stars</strong></p>
+            <div class="buttons is-centered">
+                <a class="button is-info is-large is-rounded is-outlined" href="https://t.me/steelbrawl/144" target="_blank">
+                    <span>Download from Telegram</span>
+                    <span class="icon is-small">
+                        <i class="fa-brands fa-telegram"></i>
+                    </span>
+                </a>
+                <a class="button is-success is-large is-rounded is-outlined" href="https://steelbrawl.ru/download/SteelBrawl_V35.113.apk">
+                    <span>Download directly from the site</span>
+                    <span class="icon is-small">
+                        <i class="fa-solid fa-download"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container has-text-centered">
+            <h2 class="title"><i class="fa-solid fa-heart-circle-check has-text-danger"></i> <span id="percentvalue">0</span>% players choose our server!</h2>
+            <progress id="prbar" class="progress is-danger" max="100">
+                97.9%
+            </progress>
+        </div>
+
+    </section>
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>SteelBrawl &copy; 2025</p>
+        </div>
+    </footer>
+    <script>
+        var num = 0;
+        function editPercetageValues() {
+            if (num !== 98) {
+                num += 1;
+            }
+            document.getElementById("prbar").value = num;
+            document.getElementById("percentvalue").innerHTML = num;
+        }
+        setInterval(editPercetageValues, 10);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'92c12577a9d8bf8a',t:'MTc0Mzk0MTA1Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

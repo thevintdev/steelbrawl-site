@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Steel Brawl</title>
+    <link rel="icon" type="image/x-icon" href="assets/faviconn.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+    <script src="https://kit.fontawesome.com/43e816a2c1.js" crossorigin="anonymous"></script>
+    <style>
+        #snowfall-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="snowfall-canvas"></canvas>
+    <nav class="navbar level" role="navigation" aria-label="main navigation">
+        <div class="navbar-left">
+            <a class="navbar-item" href="/download_ru">
+                <img src="../image/icon.png" class="is-32x32" alt="Steel Brawl">
+                <strong class="ml-3">Steel Brawl</strong>
+            </a>
+        </div>
+        <div class="navbar-right">
+            <a class="navbar-item" href="https://t.me/steelbrawl" target="_blank">
+                <i class="fa-brands fa-telegram fa-2x" aria-hidden="true"></i>
+                <strong class="ml-2">Telegram</strong>
+            </a>
+        </div>
+    </nav>
+    <section class="section">
+        <div class="container has-text-centered">
+            <h1 class="title is-1">Steel Brawl</h1>
+            <p class="subtitle is-3">Приватный сервер на версии 36 <strong class="has-text-danger">Brawl Stars</strong></p>
+            <div class="buttons is-centered">
+                <a class="button is-link is-large is-rounded is-outlined" href="https://apps.rustore.ru/app/com.steelbrawl.xyu">
+                    <span>Скачать с RuStore</span>
+                    <span class="icon is-small">
+                        <img src="rustore2.png" alt="RuStore Icon">
+                    </span>
+                </a>
+                <a class="button is-info is-large is-rounded is-outlined" href="https://t.me/steelbrawl/144" target="_blank">
+                    <span>Скачать с Telegram</span>
+                    <span class="icon is-small">
+                        <i class="fa-brands fa-telegram"></i>
+                    </span>
+                </a>
+                <a class="button is-success is-large is-rounded is-outlined" href="https://steelbrawl.ru/download/SteelBrawl_V35.113.apk">
+                    <span>Скачать напрямую с сайта</span>
+                    <span class="icon is-small">
+                        <i class="fa-solid fa-download"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container has-text-centered">
+            <h2 class="title"><i class="fa-solid fa-heart-circle-check has-text-danger"></i> <span id="percentvalue">0</span>% игроков выбирают наш сервер!</h2>
+            <progress id="prbar" class="progress is-danger" max="100">
+                97.9%
+            </progress>
+        </div>
+
+    </section>
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>Steel Brawl &copy; 2025</p>
+        </div>
+    </footer>
+    <script>
+        // Установите дату окончания отсчета
+        const countDownDate = new Date("April 5, 2025 12:00:00").getTime();
+
+        // Получите элементы DOM
+        const daysElement = document.getElementById("days");
+        const hoursElement = document.getElementById("hours");
+        const minutesElement = document.getElementById("minutes");
+        const secondsElement = document.getElementById("seconds");
+        const progressBarFill = document.getElementById("progress-bar-fill");
+        const celebrationMessage = document.getElementById("celebration-message");
+
+        // Общее время до события (в миллисекундах)
+        const totalTime = countDownDate - new Date().getTime();
+
+        // Обновляйте отсчет каждую секунду
+        const x = setInterval(function() {
+            // Получите текущую дату и время
+            const now = new Date().getTime();
+
+            // Найдите разницу между текущей датой и датой окончания
+            const distance = countDownDate - now;
+
+            // Вычислите дни, часы, минуты и секунды
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Обновите текст отсчета
+            daysElement.innerHTML = days;
+            hoursElement.innerHTML = hours;
+            minutesElement.innerHTML = minutes;
+            secondsElement.innerHTML = seconds;
+
+            // Обновите полоску прогресса
+            const progress = (distance / totalTime) * 100; // Процент оставшегося времени
+            progressBarFill.style.width = `${progress}%`;
+
+            // Если отсчет завершен
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").classList.add("is-hidden"); // Скрыть таймер
+                celebrationMessage.classList.remove("is-hidden"); // Показать сообщение
+
+                // Запустить конфетти
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+
+                // Повторять конфетти каждые 500 мс
+                const interval = setInterval(() => {
+                    confetti({
+                        particleCount: 50,
+                        spread: 70,
+                        origin: { y: 0.6 }
+                    });
+                }, 500);
+
+                // Остановить конфетти через 5 секунд
+                setTimeout(() => {
+                    clearInterval(interval);
+                }, 5000);
+            }
+        }, 1000);        
+        var num = 0;
+        function editPercetageValues() {
+            if (num !== 98) {
+                num += 1;
+            }
+            document.getElementById("prbar").value = num;
+            document.getElementById("percentvalue").innerHTML = num;
+        }
+        setInterval(editPercetageValues, 10)
+    </script>
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'92c111bf7d193572',t:'MTc0Mzk0MDI0NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+
+</html>

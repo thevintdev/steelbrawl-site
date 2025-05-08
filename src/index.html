@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SteelBrawl - official website </title>
+    <link rel="icon" type="image/x-icon" href="assets/faviconn.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+    <style>
+        
+        .loading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            background: #14161a; 
+            color: #ffffff; 
+        }
+
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.2); 
+            border-top: 5px solid #ff6685; 
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        
+        .language-selection {
+            display: none; 
+            margin-top: 20px;
+            text-align: center;
+        }
+
+            .language-selection button {
+                margin: 10px;
+                padding: 15px 30px;
+                font-size: 1.2rem;
+                border: none;
+                border-radius: 10px;
+                color: #ffffff;
+                background: linear-gradient(45deg, #2196f3, #4caf50); 
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+                transition: transform 0.2s, box-shadow 0.2s;
+            }
+
+                .language-selection button:hover {
+                    transform: translateY(-3px);
+                    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+                    cursor: pointer;
+                }
+
+        
+        .loading-text.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-container">
+        <div>
+            <div class="spinner"></div>
+            <div class="loading-text">Определяем язык сайта...</div>
+        </div>
+        <div class="language-selection">
+            <div class="loading-text">Не удалось определить язык. Выберите язык:</div>
+            <button onclick="window.location.href = 'ru/';">Русский</button>
+            <button onclick="window.location.href = 'en/';">English</button>
+        </div>
+    </div>
+
+    <script>
+        
+        fetch('https://ipapi.co/json/')
+            .then(response => response.json())
+            .then(data => {
+                const countryCode = data.country_code; 
+
+                
+                if (countryCode === 'RU') {
+                    window.location.href = 'ru/';
+                } else {
+                    window.location.href = 'en/';
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка определения страны:', error);
+
+                
+                document.querySelector('.spinner').style.display = 'none';
+                document.querySelector('.loading-text').classList.add('hidden');
+
+                
+                document.querySelector('.language-selection').style.display = 'block';
+            });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'92c10f067d483572',t:'MTc0Mzk0MDEzMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
